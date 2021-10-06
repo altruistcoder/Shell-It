@@ -29,3 +29,20 @@ printf "\nOC Version:"
 oc version
 printf "\nKubectl Version:"
 kubectl version
+
+
+# Installing Helm
+echo "Installing Helm"
+LATEST_TAG=$(curl -s https://api.github.com/repos/helm/helm/releases/latest | jq .tag_name | tr -d \")
+HELM_PACKAGE="helm-$LATEST_TAG-linux-amd64.tar.gz"
+HELM_DOWNLOAD_URL="https://get.helm.sh/$HELM_PACKAGE"
+wget $HELM_DOWNLOAD_URL
+if [ $? == 0 ]
+then
+    tar -zxvf $HELM_PACKAGE
+    mv linux-amd64/helm /usr/bin
+    helm version
+    helm repo add bitnami https://charts.bitnami.com/bitnami
+else
+    echo "Could not download Helm, please check URL or internet connectivity"
+fi
