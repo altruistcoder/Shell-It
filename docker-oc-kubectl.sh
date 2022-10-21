@@ -46,3 +46,10 @@ then
 else
     echo "Could not download Helm, please check URL or internet connectivity"
 fi
+
+
+# Installing ZSH & ohmyzsh🙂
+echo "Installing ZSH & ohmyzsh🙂"
+apt install zsh -y
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+echo "ZSH & ohmyzsh installed"
